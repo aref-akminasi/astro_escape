@@ -25,8 +25,8 @@ function create() {
   const myInterval = setInterval(incdif, 1000);
 
   function incdif() {
-    if (bugGenLoop.delay > 50) {
-      bugGenLoop.delay -= 15;
+    if (bugGenLoop.delay > 150) {
+      bugGenLoop.delay -= 10;
     }
 
     console.log(bugGenLoop.delay);
@@ -66,7 +66,7 @@ function create() {
 
   function bugGen() {
     const xCoord = Math.random() * 450;
-    bugs.create(xCoord, 10, "bug1");
+    bugs.create(xCoord, 10, "bug1").setScale((Math.random() + 0.5) * 2);
   }
   function gemGen() {
     const xCoord = Math.random() * 450;
