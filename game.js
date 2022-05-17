@@ -1,6 +1,6 @@
 function preload() {
   this.load.image("bug1", "assets/asteroid.png");
-  this.load.image("gem", "assets/gem.png");
+  this.load.image("gem", "assets/bomb.png");
   this.load.image("background", "assets/planet.jpg");
   this.load.image("platform", "assets/platform.png");
   this.load.image("codey", "assets/player.png");
@@ -8,6 +8,7 @@ function preload() {
   this.load.audio("jetpack", "assets/jetpack.wav");
   this.load.audio("lose", "assets/lose.wav");
   this.load.audio("collect", "assets/collect.wav");
+  this.load.audio("exp", "assets/exp.wav");
 }
 
 const gameState = {
@@ -20,6 +21,7 @@ function create() {
   this.jetpack = this.sound.add("jetpack", { volume: 0.5 });
   this.collect = this.sound.add("collect", { volume: 0.15 });
   this.lose = this.sound.add("lose");
+  this.exp = this.sound.add("exp");
   this.bgmusic.play();
 
   const myInterval = setInterval(incdif, 1000);
@@ -96,6 +98,7 @@ function create() {
 
   this.physics.add.collider(gems, platforms, (gem) => {
     gem.destroy();
+    this.exp.play();
     gameState.score -= 500;
     gameState.scoreText.setText(`Score: ${gameState.score}`);
   });
@@ -151,7 +154,7 @@ function update() {
       this.jetpack.play();
     }
   } else if (gameState.cursors.down.isDown) {
-    gameState.player.setVelocityY(260);
+    gameState.player.setVelocityY(160);
     if (!this.jetpack.isPlaying) {
       this.jetpack.play();
     }
