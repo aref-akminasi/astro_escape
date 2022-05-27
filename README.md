@@ -1,7 +1,7 @@
 # Astro escape
 
 This is the repository for the 'Astro escape' project for minor visual design & front-end development
-Live demo:
+Live demo: http://arefakminasi.me/astro_escape/
 
 ## How to run
 
