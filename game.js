@@ -1,3 +1,5 @@
+// All assets of the game are defined in the preload
+
 function preload() {
   this.load.image("bug1", "assets/asteroid.png");
   this.load.image("gem", "assets/bomb.png");
@@ -11,12 +13,14 @@ function preload() {
   this.load.audio("exp", "assets/exp.wav");
 }
 
+// These are the global variables
 const gameState = {
   topscore: 0,
   score: 0,
 };
 
 function create() {
+  // I created here a game object for every asset I have imported
   this.bgmusic = this.sound.add("bgmusic", { volume: 0.4, loop: true });
   this.jetpack = this.sound.add("jetpack", { volume: 0.5 });
   this.collect = this.sound.add("collect", { volume: 0.15 });
@@ -109,6 +113,7 @@ function create() {
     gameState.scoreText.setText(`Score: ${gameState.score}`);
   });
 
+  // This is a collider will applied after hitting an asteroid
   this.physics.add.collider(gameState.player, bugs, () => {
     bugGenLoop.destroy();
     gemGenLoop.destroy();
@@ -130,19 +135,16 @@ function create() {
       fill: "#ffffff",
     });
 
-    // Add your code below:
     this.input.on("pointerup", () => {
       gameState.score = 0;
       this.bgmusic.stop();
-      // location.reload();
-
       clearInterval(myInterval);
-
       this.scene.restart();
     });
   });
 }
 
+// This function will trigger every game frame
 function update() {
   if (gameState.cursors.left.isDown) {
     gameState.player.setVelocityX(-160);
@@ -163,11 +165,11 @@ function update() {
   }
 }
 
+// This is a main config of the game screen
 const config = {
   type: Phaser.AUTO,
   width: 450,
   height: 500,
-  /* backgroundColor: "b9eaff",*/
   physics: {
     default: "arcade",
     arcade: {
