@@ -1,0 +1,12 @@
+#tutorial {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+* {
+  font-family: monospace;
+  background-color: rgb(243, 243, 243);
+}
